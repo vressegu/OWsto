@@ -8,7 +8,7 @@
 % Physical parameters
 r = 0.0;
 % r = 0.9;
- alpha2 = 0;
+%  alpha2 = 0;
 alpha2 = 10^(0.0);
 
 % Simulation parameters
@@ -135,8 +135,8 @@ set(gca,...
     'FontWeight','normal',...
     'FontSize',taille_police,...
     'FontName','Times')
-
-eval([ 'print -depsc save_r_alpha/one_simu_r=' num2str(r) ...
+mkdir([pwd '/save_r_alpha'])
+eval([ 'print -depsc ' pwd '/save_r_alpha/one_simu_r=' num2str(r) ...
     '_alpha2=' num2str(alpha2) '.eps']);  
 
 
