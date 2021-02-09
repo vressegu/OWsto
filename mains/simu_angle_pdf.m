@@ -29,7 +29,8 @@ theta_0 = 0.4; % angle initial
 rho_0 = 1; % nombre d'onde / écart entre particule initial
 nb_hist = 30; % discretization en abcisse pour les histogrammes
 n_pdf = 100; % discretization en abcisse pour les plots ksdensity
-max_plot_rho= T/4; % max/min pour les abcisses pour les plots ksdensity
+max_plot_rho= 1/4; % max/min pour les abcisses pour les plots ksdensity
+% max_plot_rho= T/4; % max/min pour les abcisses pour les plots ksdensity
 %max_plot_rho=5 *T/10;
 
 % Pre-treatement
@@ -73,7 +74,7 @@ for k_t=1:(N-1)
                       + alpha/sqrt(12) * dBt(k_t,:,2) );
     ln_rho(k_t+1, ln_rho(k_t+1,:)<0 ) = 0;
     F_theta(k_t+1,:)=ksdensity(theta(k_t+1,:),XI_theta);
-    F_rho(k_t+1,:)=ksdensity((ln_rho(k_t+1,:)),XI_rho);
+    F_rho(k_t+1,:)=ksdensity((ln_rho(k_t+1,:))/time((k_t+1),XI_rho);
     F_sin(k_t+1,:)=ksdensity(-sin(theta(k_t+1,:)),XI_sin);
 end
 theta = mod(theta+pi,2*pi)-pi;
@@ -114,9 +115,9 @@ ax=axis;
 ax(1:2) =[-pi pi ];
 axis(ax);
 subplot(1,3,2)
-ksdensity((ln_rho(end,:)))
-% hist(log(ln_rho(end,:)),nb_hist)
-title('$\ln(\rho)$',...
+ksdensity((ln_rho(end,:))/time(end))
+% hist(log(ln_rho(end,:))/time(end),nb_hist)
+title('$\ln(\rho)/t$',...
     'Interpreter','latex')
 ax=axis;
 ax(1:2) = max_plot_rho * [-1 1 ];
@@ -139,7 +140,7 @@ cax = caxis; cax(2)=cax(2)/100;caxis(cax);
 subplot(1,3,2)
 imagesc(time,XI_rho,F_rho');
 axis xy;
-title('$\ln(rho)$',...
+title('$\ln(rho)/t$',...
     'Interpreter','latex')
 subplot(1,3,3)
 imagesc(time,XI_sin,F_sin');
@@ -158,7 +159,7 @@ title('$\theta$',...
 subplot(1,3,2)
 imagesc(time,XI_rho,log(F_rho)');
 axis xy;
-title('$\ln(\rho)$',...
+title('$\ln(\rho)/t$',...
     'Interpreter','latex')
 subplot(1,3,3)
 imagesc(time,XI_sin,log(F_sin)');
