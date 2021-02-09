@@ -9,14 +9,15 @@
 r = 1.2;
 % alpha2 = 0;
 alpha2 = 1e-1;
+alpha = sqrt(alpha2);
 
 % Simulation parameters
-T =  min ( [ 2/sqrt(abs(r^2-1)) 10/r ] ) * 10;
+T =  min ( [ 2/sqrt(abs(r^2-1)) 10/r ] ) * 10; % temps max
 dt = min (  [ min( [ 2/sqrt(abs(r^2-1)) 1/r ] ) ...
              (2*pi/alpha)^2                       ] ) /100;
 % T = 3e2 * 1;
 % dt = 1e-1 * 1;
-nb_realiz = 1e3;
+nb_realiz = 1e3; % nb de particules / trajectoires
 % T = 3e0 * 1;
 % % T = 3e1 * 1;
 % % % T = 1e1 * 1;
@@ -24,16 +25,16 @@ nb_realiz = 1e3;
 % % dt = 1e-1 * 1;
 % % % T = 1e1 * alpha2;
 % % % dt = 1e-1 * alpha2;
-theta_0 = 0.4;
-rho_0 = 1;
-nb_hist = 30;
-n_pdf = 100;
-max_plot_rho= T/4;
+theta_0 = 0.4; % angle initial
+rho_0 = 1; % nombre d'onde / écart entre particule initial
+nb_hist = 30; % discretization en abcisse pour les histogrammes
+n_pdf = 100; % discretization en abcisse pour les plots ksdensity
+max_plot_rho= T/4; % max/min pour les abcisses pour les plots ksdensity
 %max_plot_rho=5 *T/10;
 
 % Pre-treatement
 time = 0:dt:T;
-N =length(time);
+N =length(time); % nd pas de temps
 alpha = sqrt(alpha2);
 
 % Sampling of noise
@@ -46,9 +47,12 @@ ln_rho= nan(N,nb_realiz);
 theta(1,:)=theta_0;
 ln_rho(1,:)=log(rho_0);
 
-XI_theta = linspace( - pi, pi,n_pdf);
-XI_rho = linspace( - max_plot_rho, max_plot_rho,n_pdf);
-XI_sin = linspace( - 1, 1,n_pdf);
+XI_theta = linspace( - pi, pi,n_pdf); % discretization en abcisse pour les plots ksdensity
+
+XI_rho = linspace( - max_plot_rho, max_plot_rho,n_pdf);% discretization en abcisse pour les plots ksdensity
+
+XI_sin = linspace( - 1, 1,n_pdf);% discretization en abcisse pour les plots ksdensity
+
 F_theta= nan(N,n_pdf);
 F_rho= nan(N,n_pdf);
 F_sin= nan(N,n_pdf);
