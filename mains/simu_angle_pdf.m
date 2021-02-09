@@ -74,7 +74,7 @@ for k_t=1:(N-1)
                       + alpha/sqrt(12) * dBt(k_t,:,2) );
     ln_rho(k_t+1, ln_rho(k_t+1,:)<0 ) = 0;
     F_theta(k_t+1,:)=ksdensity(theta(k_t+1,:),XI_theta);
-    F_rho(k_t+1,:)=ksdensity((ln_rho(k_t+1,:))/time((k_t+1),XI_rho);
+    F_rho(k_t+1,:)=ksdensity((ln_rho(k_t+1,:))/time(k_t+1),XI_rho);
     F_sin(k_t+1,:)=ksdensity(-sin(theta(k_t+1,:)),XI_sin);
 end
 theta = mod(theta+pi,2*pi)-pi;
